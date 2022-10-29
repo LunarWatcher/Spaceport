@@ -1,5 +1,7 @@
 #pragma once
 
+#include "spaceport/core/Spaceport.hpp"
+#include "spaceport/defs/Definitions.hpp"
 #include <string>
 
 namespace spaceport {
@@ -12,7 +14,8 @@ public:
     Module(const std::string& displayName,
            const std::string& moduleID);
 
-    virtual void establishEndpoints() = 0;
+    virtual void establishEndpoints(CROWAPP& app) = 0;
+    virtual void display() = 0;
 
 };
 

@@ -3,6 +3,7 @@
 #include "spaceport/data/Config.hpp"
 
 #include "crow.h"
+#include "spaceport/defs/Definitions.hpp"
 
 namespace spaceport {
 
@@ -10,7 +11,7 @@ class Spaceport {
 private:
     Config conf;
 
-    crow::SimpleApp app;
+    CROWAPP app;
 
 public:
     Spaceport();
