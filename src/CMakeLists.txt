@@ -1,9 +1,12 @@
 set (SOURCE_FILES
     spaceport/Main.cpp
 
+    spaceport/core/Spaceport.cpp
+
+    spaceport/data/Config.cpp
+
     spaceport/modules/Module.cpp
 
-    spaceport/core/Spaceport.hpp
 )
 
 add_executable(spaceport ${SOURCE_FILES})

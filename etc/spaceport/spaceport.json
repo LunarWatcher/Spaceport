@@ -1,0 +1,15 @@
+{
+    "port": 80,
+    "sslport": 442,
+    "devport": 69,
+    "ssl": {
+        "enabled": false,
+        "certpath": null
+    },
+    "modules": {
+
+    },
+    "datamodules": {
+
+    }
+}

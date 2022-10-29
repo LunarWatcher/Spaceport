@@ -1,5 +1,11 @@
 #include<iostream>
 
+#include "core/Spaceport.hpp"
+
 int main() {
-    std::cout << "Hello, World!" << std::endl;
+    try {
+        spaceport::Spaceport::init();
+    } catch (int err) {
+        return err;
+    }
 }
