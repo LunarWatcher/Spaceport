@@ -16,7 +16,15 @@ void Spaceport::prepareHandlers() {
 void Spaceport::run() {
     app
         .multithreaded()
-        .port(69);
+        .port(
+#ifdef DEVPORT
+            conf.data.value("devport", 1337)
+#else
+            conf.data.contains("ssl") && conf.data.at("ssl").value("enabled", false)
+                ? conf.data.value("sslport", 443)
+                : conf.data.value("port", 22)
+#endif
+        );
 
 
     app.run();

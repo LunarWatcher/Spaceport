@@ -29,5 +29,9 @@ conan_cmake_install (PATH_OR_REFERENCE . BUILD missing SETTINGS ${settings})
 include(${CMAKE_BINARY_DIR}/conanbuildinfo.cmake)
 conan_basic_setup()
 
+if(${CMAKE_BUILD_TYPE} STREQUAL "Debug")
+    set (CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -DDEVPORT")
+endif()
+
 add_subdirectory(src)
 # vim:ft=cmake
