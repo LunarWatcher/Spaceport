@@ -4,9 +4,7 @@
         "certpath": null
     },
     "modules": {
-
-    },
-    "datamodules": {
-
+        "serverinfo": {},
+        "datastorage": {}
     }
 }

@@ -3,15 +3,17 @@
 #include "spaceport/data/Config.hpp"
 
 #include "crow.h"
-#include "spaceport/defs/Definitions.hpp"
 
 namespace spaceport {
 
+class Module;
 class Spaceport {
 private:
     Config conf;
 
-    CROWAPP app;
+    crow::Crow<> app;
+
+    std::vector<std::shared_ptr<Module>> loadedModules;
 
 public:
     Spaceport();
@@ -27,6 +29,7 @@ public:
     static void init();
 
     const Config& getConfig() { return conf; }
+    decltype(app)& getApp() { return app; }
 };
 
 }

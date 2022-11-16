@@ -6,6 +6,7 @@ set (SOURCE_FILES
     spaceport/data/Config.cpp
 
     spaceport/modules/Module.cpp
+    spaceport/modules/DataStorageModule.cpp
 
 )
 
