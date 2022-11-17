@@ -27,6 +27,7 @@ void Spaceport::prepareHandlers() {
 
     for (auto& mod : loadedModules) {
         mod->establishEndpoints(*this);
+        spdlog::info("{} has established endpoints.", mod->getDisplayName());
     }
 
 }

@@ -22,6 +22,8 @@ public:
     virtual void establishEndpoints(Spaceport& port) {};
     virtual std::string display(Spaceport& port) = 0;
 
+    const std::string& getDisplayName() { return displayName; }
+
 };
 
 }

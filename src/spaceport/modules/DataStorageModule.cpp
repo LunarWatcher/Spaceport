@@ -11,8 +11,6 @@ void DataStorageModule::establishEndpoints(Spaceport& port) {
     ([this](const std::string& datastore) {
         return crow::response{"Dump data to " + datastore};
     });
-    
-    spdlog::info("DataStorageModule has established endpoints");
 }
 
 std::string DataStorageModule::display(Spaceport& port) {
