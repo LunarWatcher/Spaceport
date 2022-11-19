@@ -1,0 +1,33 @@
+<html lang="en-GB">
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1.0"/>
+        <meta http-equiv="Content-language" content = "en-GB"/>
+
+        <title>{{ PageTitle }} | Spaceport</title>
+        <script src="/assets/base.js"></script>
+
+        {{#HasPageJS}}
+        <script src="{{PageJSLoc}}" async></script>
+        {{/HasPageJS}}
+
+        <link rel="stylesheet" type="text/css" href="/assets/style.css" />
+    </head>
+    <body>
+        <header>
+            <nav class="nav-container">
+                <h1 class="logo left"><a href="/">Spaceport</a></h1>
+            </nav>
+        </header>
+        <main>
+            {{&Content}}
+        </main>
+        <footer>
+            <p>Spaceport {{ Version }}</p>
+        </footer>
+    </body>
+</html>
+<!--
+vim:ft=mustache
+-->

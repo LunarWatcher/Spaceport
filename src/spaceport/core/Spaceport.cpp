@@ -1,5 +1,7 @@
 #include "Spaceport.hpp"
 
+#include "crow/mustache.h"
+#include "spaceport/frontend/Dashboard.hpp"
 #include "spaceport/modules/Module.hpp"
 #include "spaceport/modules/DataStorageModule.hpp"
 #include "spdlog/spdlog.h"
@@ -11,10 +13,9 @@ Spaceport::Spaceport() {
 }
 
 void Spaceport::prepareHandlers() {
-
-    CROW_ROUTE(app, "/")([]() {
-        return "<html><body><h1 style=\"color: pink;\">It's alive!</h1></body></html>";
-    });
+    //std::cout << "pwd: " << system("pwd") << std::endl;
+    crow::mustache::set_global_base("www");
+    Dashboard::initEndpoints(*this);
 
     if (conf.data.contains("modules")) {
         if (conf.data.at("modules").contains("datastorage") && conf.data.at("modules").at("datastorage").value("enabled", true)) {
