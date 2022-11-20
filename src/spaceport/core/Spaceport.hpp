@@ -1,5 +1,6 @@
 #pragma once
 
+#include "spaceport/core/server/Middlewares.hpp"
 #include "spaceport/data/Config.hpp"
 
 #include "crow.h"
@@ -11,7 +12,7 @@ class Spaceport {
 private:
     Config conf;
 
-    crow::Crow<> app;
+    crow::Crow<ProtectedAPIEndpoint> app;
 
     std::vector<std::shared_ptr<Module>> loadedModules;
 

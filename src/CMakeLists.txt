@@ -9,6 +9,9 @@ set (SOURCE_FILES
     spaceport/modules/DataStorageModule.cpp
 
     spaceport/frontend/Dashboard.cpp
+    spaceport/frontend/Easter.cpp
+
+    spaceport/core/server/Middlewares.cpp
 
 )
 

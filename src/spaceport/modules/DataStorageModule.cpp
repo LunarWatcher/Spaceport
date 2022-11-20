@@ -8,6 +8,7 @@ void DataStorageModule::establishEndpoints(Spaceport& port) {
 
     CROW_ROUTE(server, "/api/<string>/save")
         .methods("POST"_method)
+        .CROW_MIDDLEWARES(server, ProtectedAPIEndpoint)
     ([this](const std::string& datastore) {
         return crow::response{"Dump data to " + datastore};
     });

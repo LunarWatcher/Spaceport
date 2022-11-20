@@ -2,6 +2,7 @@
 
 #include "crow/mustache.h"
 #include "spaceport/frontend/Dashboard.hpp"
+#include "spaceport/frontend/Easter.hpp"
 #include "spaceport/modules/Module.hpp"
 #include "spaceport/modules/DataStorageModule.hpp"
 #include "spdlog/spdlog.h"
@@ -31,6 +32,8 @@ void Spaceport::prepareHandlers() {
     assetBaseDir = "www";
 #endif
     Dashboard::initEndpoints(*this);
+    // You've seen nothing.
+    Easter::initEndpoints(*this);
 
     if (conf.data.contains("modules")) {
         if (conf.data.at("modules").contains("datastorage") && conf.data.at("modules").at("datastorage").value("enabled", true)) {
