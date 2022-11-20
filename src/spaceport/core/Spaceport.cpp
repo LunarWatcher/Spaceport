@@ -6,6 +6,8 @@
 #include "spaceport/modules/DataStorageModule.hpp"
 #include "spdlog/spdlog.h"
 
+#include <filesystem>
+
 namespace spaceport {
 
 Spaceport::Spaceport() {
@@ -14,7 +16,17 @@ Spaceport::Spaceport() {
 
 void Spaceport::prepareHandlers() {
     //std::cout << "pwd: " << system("pwd") << std::endl;
+#ifdef SPACEPORT_DEBUG
+    if (std::filesystem::exists("www-debug")) {
+        // Symlinked repo; only respected for fast iterative updates when dealing with
+        // webdev
+        crow::mustache::set_global_base("www-debug");
+    } else {
+        crow::mustache::set_global_base("www");
+    }
+#else
     crow::mustache::set_global_base("www");
+#endif
     Dashboard::initEndpoints(*this);
 
     if (conf.data.contains("modules")) {
@@ -37,7 +49,7 @@ void Spaceport::run() {
     app
         .multithreaded()
         .port(
-#ifdef DEVPORT
+#ifdef SPACEPORT_DEBUG
             conf.data.value("devport", 1337)
 #else
             conf.data.contains("ssl") && conf.data.at("ssl").value("enabled", false)

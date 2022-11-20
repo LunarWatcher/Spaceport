@@ -25,6 +25,7 @@ void Dashboard::initEndpoints(Spaceport& port) {
 crow::response Dashboard::getIndex() {
     crow::mustache::context ctx;
     ctx["PageTitle"] = "Dashboard";
+    ctx["LoadDashboard"] = true;
     ctx["Content"] = [&](std::string) {
         return "{{>index.html}}";
     };

@@ -23,6 +23,10 @@ add_custom_target(webcontent
     COMMAND ${CMAKE_COMMAND} -E copy_directory ${CMAKE_SOURCE_DIR}/www ${CMAKE_BINARY_DIR}/www
     COMMENT "Copying web to output dir"
 )
-add_dependencies(spaceport webcontent)
+add_custom_target(webcontentdebug
+    COMMAND ${CMAKE_COMMAND} -E create_symlink ${CMAKE_SOURCE_DIR}/www ${CMAKE_BINARY_DIR}/www-debug
+    COMMENT "Symlink debug symlink repo"
+)
+add_dependencies(spaceport webcontent webcontentdebug)
 
 # vim:ft=cmake

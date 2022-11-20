@@ -30,7 +30,7 @@ include(${CMAKE_BINARY_DIR}/conanbuildinfo.cmake)
 conan_basic_setup()
 
 if(${CMAKE_BUILD_TYPE} STREQUAL "Debug")
-    set (CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -DDEVPORT")
+    set (CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -DSPACEPORT_DEBUG")
 endif()
 
 add_subdirectory(src)
