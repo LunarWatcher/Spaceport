@@ -1,9 +1,31 @@
+:root {
+    --color-dark: #474647;
+    --color-accent: #8606ac;
+    --color-complement: #F562A8;
+
+    --grey-special: #f6f6f6;
+
+}
+html { height: 100vh; }
 /* Any bets on when this CSS file turns into a shitshow? */
 main {
     display: block;
     flex: 1 0 auto;
+
+    grid-area: main;
 }
 
+body {
+    margin: 0 auto;
+    display: grid;
+    grid-gap: 10px;
+    grid-template-columns: 1fr;
+    grid-template-rows: auto 1fr auto;
+    grid-template-areas: "nav"
+                            "main"
+                            "footer";
+    height: 100vh;
+}
 
 .container {
     margin: 0 auto;
@@ -21,3 +43,161 @@ main {
     }
 }
 
+/*Fonts {{{*/
+p, a, button, span, h1, h2, h3, h4, h5, h6 {
+    font-family: Ubuntu, Roboto, Helvetica, sans-serif;
+}
+
+.mono {
+    font-family: "SauceCodePro Nerd Font",
+    "Source Code Pro for Powerline",
+    SourceCodePro,
+    "Ubuntu Mono",
+    "Roboto Mono",
+    "Liberation Mono",
+    monospace, sans-serif;
+}
+
+
+/*}}}*/
+/*Box styles {{{*/
+div.shadow {
+    box-shadow: 0 7px 14px rgba(0,0,0,0.19), 0 3px 3px rgba(0,0,0,0.23);
+    padding: 10px;
+}
+/*}}}*/
+/*Flexbox stuff {{{*/
+.flex-container {
+    display: flex;
+    flex-wrap: wrap;
+
+    gap: 10px;
+}
+
+.flex-container > div {
+    flex: 1 1 auto;
+}
+
+.fullwidth {
+    width: 100%;
+}
+
+.doublet {
+    width: 48%;
+}
+
+.triplet {
+    width: 29%;
+}
+
+/*}}}*/
+/*navbar {{{*/
+header {
+    margin: auto;
+    width: 100%;
+    color: var(--color-accent);
+    grid-area: nav;
+    border-bottom: 3px solid var(--color-complement);
+
+    box-shadow: 0 1px 10px rgba(0,0,0,0.19), 0 3px 3px rgba(0,0,0,0.23);
+    height: 64px;
+}
+
+.nav-container > div {
+    display: block;
+}
+
+/*}}}*/
+/*Grids {{{*/
+.triple-column-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    grid-template-rows: auto;
+}
+
+.double-column-grid {
+    display: grid;
+    grid-template-columns: 1fr auto;
+    grid-template-rows: auto;
+}
+
+.double-row-grid {
+    display: grid;
+    grid-template-columns: auto;
+    grid-template-rows: 1fr auto;
+}
+/*}}}*/
+/*Element styling {{{*/
+a {
+    text-decoration: none;
+    color: var(--color-accent);
+}
+
+a:hover {
+    text-decoration: underline;
+}
+
+.code-inline {
+    background-color: var(--grey-special);
+    padding: 1px 3px 1px 3px;
+    border-radius: 2px;
+}
+
+span.accent {
+    color: var(--color-accent);
+}
+span.version {
+    color: var(--color-complement);
+    filter: brightness(0.75);
+}
+
+/*Button {{{*/
+
+.button {
+    background-color: var(--color-complement);
+    color: black;
+    border-radius: 4px;
+    cursor: pointer;
+    padding: 5px;
+
+}
+
+.nav-button {
+    padding: 0 15px;
+    display: inline-block;
+    margin: auto;
+    /*height: 100%;*/
+    line-height: 64px;
+    cursor: pointer;
+}
+
+.nav-button:hover {
+    background-color: #eaeaea;
+}
+
+/*}}}*/
+/*Sneaky lists {{{*/
+.sneaky-list {
+    margin: 0;
+    list-style: none;
+    padding: 0;
+}
+/*}}}*/
+/*}}}*/
+/*Footer {{{*/
+footer {
+    border-top: 3px solid var(--color-complement);
+    grid-area: footer;
+    flex-shrink: 0;
+    background-color: #F5F5F5;
+    color: black;
+
+    box-shadow: 0 3px 10px rgba(0,0,0,0.19), 0 -3px 3px rgba(0,0,0,0.23);
+
+}
+
+footer > .container {
+    padding-top: 10px;
+    padding-bottom: 10px;
+}
+/*}}}*/

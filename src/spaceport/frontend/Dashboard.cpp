@@ -28,7 +28,6 @@ void Dashboard::initContext(crow::mustache::context& ctx, const std::string& tit
         ctx["HasPageJS"] = true;
         ctx["PageJSLoc"] = pageJS;
     }
-
     ctx["Version"] = SPACEPORT_VERSION;
     ctx["PageTitle"] = title;
     ctx["Content"] = [&](std::string) {
