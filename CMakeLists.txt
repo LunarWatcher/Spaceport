@@ -30,8 +30,23 @@ include(${CMAKE_BINARY_DIR}/conanbuildinfo.cmake)
 conan_basic_setup()
 
 if(${CMAKE_BUILD_TYPE} STREQUAL "Debug")
-    set (CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -DSPACEPORT_DEBUG")
+    set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -DSPACEPORT_DEBUG")
 endif()
+
+# Set up versioning {{{
+find_program(GIT git)
+if (GIT)
+    execute_process(COMMAND ${GIT} describe --tags --always
+        OUTPUT_VARIABLE SPACEPORT_VERSION
+        OUTPUT_STRIP_TRAILING_WHITESPACE
+    )
+    message(STATUS "Detected version: ${SPACEPORT_VERSION}")
+else()
+    message(WARNING "Git not found. Defaulting to unknown version. This will not have an effect on the program beyond a missing version")
+    set(SPACEPORT_VERSION "VERSION UNKNOWN. Who doesn't have Git? It's the 2020s. Install it already")
+endif()
+add_definitions(-DSPACEPORT_VERSION="${SPACEPORT_VERSION}")
+# }}}
 
 add_subdirectory(src)
 # vim:ft=cmake

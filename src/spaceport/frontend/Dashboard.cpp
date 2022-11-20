@@ -22,15 +22,23 @@ void Dashboard::initEndpoints(Spaceport& port) {
     });
 }
 
+void Dashboard::initContext(crow::mustache::context& ctx, const std::string& title,
+                 const std::string& contentPartial, const std::string& pageJS) {
+    if (pageJS != "") {
+        ctx["HasPageJS"] = true;
+        ctx["PageJSLoc"] = pageJS;
+    }
+
+    ctx["Version"] = SPACEPORT_VERSION;
+    ctx["PageTitle"] = title;
+    ctx["Content"] = [&](std::string) {
+        return "{{>" + contentPartial + "}}";
+    };
+}
+
 crow::response Dashboard::getIndex() {
     crow::mustache::context ctx;
-    ctx["PageTitle"] = "Dashboard";
-    ctx["LoadDashboard"] = true;
-    ctx["Content"] = [&](std::string) {
-        return "{{>index.html}}";
-    };
-    ctx["Version"] = "0.0.1-alpha";
-    ctx["HasPageJS"] = false;
+    initContext(ctx, "Dashboard", "index.html", "");
 
     return crow::mustache::load("base.html").render_string(ctx);
 }
