@@ -1,3 +1,21 @@
-body {
-    width: 80% auto;
+main {
+    display: block;
+    flex: 1 0 auto;
 }
+
+.container {
+    margin: 0 auto;
+    width: 90%;
+}
+
+@media only screen and (min-width: 600px) {
+    .container {
+        width: 85%;
+    }
+}
+@media only screen and (min-width: 990px) {
+    .container {
+        width: 70%;
+    }
+}
+

@@ -21,11 +21,14 @@ void Spaceport::prepareHandlers() {
         // Symlinked repo; only respected for fast iterative updates when dealing with
         // webdev
         crow::mustache::set_global_base("www-debug");
+        assetBaseDir = "www-debug";
     } else {
         crow::mustache::set_global_base("www");
+        assetBaseDir = "www";
     }
 #else
     crow::mustache::set_global_base("www");
+    assetBaseDir = "www";
 #endif
     Dashboard::initEndpoints(*this);
 

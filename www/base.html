@@ -16,15 +16,19 @@
     </head>
     <body>
         <header>
-            <nav class="nav-container">
+            <nav class="nav-container container">
                 <h1 class="logo left"><a href="/">Spaceport</a></h1>
             </nav>
         </header>
         <main>
-            {{&Content}}
+            <div class="container">
+                {{&Content}}
+            </div>
         </main>
         <footer>
-            <p>Spaceport {{ Version }}</p>
+            <div class="container">
+                <p>Spaceport {{ Version }}</p>
+            </div>
         </footer>
     </body>
 </html>

@@ -15,6 +15,8 @@ private:
 
     std::vector<std::shared_ptr<Module>> loadedModules;
 
+    std::string assetBaseDir;
+
 public:
     Spaceport();
 
@@ -30,6 +32,10 @@ public:
 
     const Config& getConfig() { return conf; }
     decltype(app)& getApp() { return app; }
+
+    const std::string& getAssetBaseDir() {
+         return assetBaseDir;
+    }
 };
 
 }
