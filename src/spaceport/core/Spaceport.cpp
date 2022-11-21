@@ -7,6 +7,8 @@
 #include "spaceport/modules/DataStorageModule.hpp"
 #include "spdlog/spdlog.h"
 
+#include <pqxx/pqxx>
+
 #include <filesystem>
 
 namespace spaceport {
@@ -17,6 +19,27 @@ Spaceport::Spaceport() {
 }
 
 void Spaceport::bootstrapDatabase() {
+    auto conn = createDBConnection();
+    spdlog::info("Connected to database: {}", conn->dbname());
+    spdlog::info("Initialising tables...");
+    pqxx::work t(*conn);
+
+    // TODO: figure out DB upgrade paths
+    // I'm way out of my depth here
+
+    // Global table definitions {{{
+    // APIAccess contains auth keys to the API. This doesn't have anything to do with access to the site itself, only
+    // application access to the API.
+    t.exec(R"(
+    CREATE TABLE IF NOT EXISTS APIAccess (
+        APIKey TEXT,
+        IssuedAt BIGINT,
+        PRIMARY KEY(APIKey)
+    );
+    )");
+    // }}}
+
+    t.commit();
 
 }
 
@@ -76,6 +99,23 @@ void Spaceport::init() {
     Spaceport p;
 
     p.run();
+}
+
+std::shared_ptr<pqxx::connection> Spaceport::createDBConnection() {
+    return std::make_shared<pqxx::connection>(
+        "user=" + conf.data.at("database").at("username").get<std::string>() + " "
+        + "password=" + conf.data.at("database").at("password").get<std::string>() + " "
+        // TODO: for unit tests, this needs to be changed to something more flexible.
+        // Exposing it in general is a solid meh from me, because why tf would this be flexible?
+        // Usernames and passwords, obviously. Hosts, maybe (but generally useless, sooo),
+        // but the database name doesn't make sense as anything else.
+        // ... well, sort of.
+        //
+        // Aside tests, there's also debug deployments that probably shouldn't affect the proper database.
+        // I don't think the current config should conflict though. But I don't see much of a reason to 
+        // do this in practice, because why would I? It's pointless.
+        + "dbname=spaceport host=127.0.0.1"
+    );
 }
 
 }

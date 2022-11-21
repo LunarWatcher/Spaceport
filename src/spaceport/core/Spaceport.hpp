@@ -5,6 +5,8 @@
 
 #include "crow.h"
 
+#include <pqxx/pqxx>
+
 namespace spaceport {
 
 class Module;
@@ -31,6 +33,8 @@ public:
     void run();
 
     static void init();
+
+    std::shared_ptr<pqxx::connection> createDBConnection();
 
     const Config& getConfig() { return conf; }
     decltype(app)& getApp() { return app; }

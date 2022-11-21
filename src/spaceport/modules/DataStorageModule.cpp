@@ -6,6 +6,8 @@ namespace spaceport {
 void DataStorageModule::establishEndpoints(Spaceport& port) {
     auto& server = port.getApp();
 
+    // This needs a whole lot of reworking. Flexible data good, yes, but still, it's limited by DB schemas. 
+    // I probably want to hook up config to DB creation (but what about upgrades or schema changes?)
     CROW_ROUTE(server, "/api/<string>/save")
         .methods("POST"_method)
         .CROW_MIDDLEWARES(server, ProtectedAPIEndpoint)

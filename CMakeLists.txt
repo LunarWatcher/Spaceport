@@ -20,6 +20,8 @@ conan_cmake_configure (REQUIRES
     crowcpp-crow/1.0+3
     nlohmann_json/3.11.2
     spdlog/1.10.0
+
+    libpqxx/7.7.4
     GENERATORS cmake
 )
 

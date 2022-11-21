@@ -6,5 +6,9 @@
     "modules": {
         "serverinfo": {},
         "datastorage": {}
+    },
+    "database": {
+        "username": "",
+        "password": ""
     }
 }
