@@ -12,7 +12,12 @@
 namespace spaceport {
 
 Spaceport::Spaceport() {
+    bootstrapDatabase();
     prepareHandlers();
+}
+
+void Spaceport::bootstrapDatabase() {
+
 }
 
 void Spaceport::prepareHandlers() {

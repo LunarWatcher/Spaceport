@@ -21,6 +21,7 @@ private:
 public:
     Spaceport();
 
+    void bootstrapDatabase();
     void prepareHandlers();
 
     /**
