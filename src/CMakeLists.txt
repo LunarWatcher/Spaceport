@@ -1,6 +1,4 @@
 set (SOURCE_FILES
-    spaceport/Main.cpp
-
     spaceport/core/Spaceport.cpp
 
     spaceport/data/Config.cpp
@@ -15,11 +13,14 @@ set (SOURCE_FILES
 
 )
 
-add_executable(spaceport ${SOURCE_FILES})
-target_include_directories(spaceport PUBLIC ./)
-target_include_directories(spaceport PUBLIC ${CONAN_INCLUDE_DIRS})
+add_library(spaceportsrc ${SOURCE_FILES})
+add_executable(spaceport spaceport/Main.cpp)
 
-target_link_libraries(spaceport ${CONAN_LIBS})
+target_include_directories(spaceportsrc PUBLIC ./)
+target_include_directories(spaceportsrc PUBLIC ${CONAN_INCLUDE_DIRS})
+
+target_link_libraries(spaceportsrc ${CONAN_LIBS})
+target_link_libraries(spaceport spaceportsrc)
 
 add_custom_target(webcontent
     COMMAND ${CMAKE_COMMAND} -E make_directory ${CMAKE_BINARY_DIR}/www
@@ -30,6 +31,6 @@ add_custom_target(webcontentdebug
     COMMAND ${CMAKE_COMMAND} -E create_symlink ${CMAKE_SOURCE_DIR}/www ${CMAKE_BINARY_DIR}/www-debug
     COMMENT "Symlink debug symlink repo"
 )
-add_dependencies(spaceport webcontent webcontentdebug)
+add_dependencies(spaceportsrc webcontent webcontentdebug)
 
 # vim:ft=cmake

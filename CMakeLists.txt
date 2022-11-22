@@ -17,11 +17,19 @@ endif()
 include(${CMAKE_BINARY_DIR}/conan.cmake)
 
 conan_cmake_configure (REQUIRES
+    # Server framework
     crowcpp-crow/1.0+3
+    # JSON fuckery; crow offers some JSON facilities, but not really enough.
+    # May be replaced with a faster library in the future:tm:
     nlohmann_json/3.11.2
+    # Logging
     spdlog/1.10.0
-
+    # Mainly used for tests, but also active runners
+    cpr/1.9.0 
+    # Database access
     libpqxx/7.7.4
+    # Dependency conflict override
+    zlib/1.2.13
     GENERATORS cmake
 )
 
@@ -51,4 +59,5 @@ add_definitions(-DSPACEPORT_VERSION="${SPACEPORT_VERSION}")
 # }}}
 
 add_subdirectory(src)
+add_subdirectory(tests)
 # vim:ft=cmake

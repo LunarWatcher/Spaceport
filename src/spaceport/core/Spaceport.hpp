@@ -30,7 +30,7 @@ public:
      * Takes care of the actual server setup.
      * Does not set up endpoints, only the app metadata.
      */
-    void run();
+    void run(bool test);
 
     static void init();
 

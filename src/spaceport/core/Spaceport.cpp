@@ -79,7 +79,7 @@ void Spaceport::prepareHandlers() {
 
 }
 
-void Spaceport::run() {
+void Spaceport::run(bool test) {
     app
         .multithreaded()
         .port(
@@ -92,13 +92,15 @@ void Spaceport::run() {
 #endif
         );
 
-    app.run();
+    if (!test) {
+        app.run();
+    }
 }
 
 void Spaceport::init() {
     Spaceport p;
 
-    p.run();
+    p.run(false);
 }
 
 std::shared_ptr<pqxx::connection> Spaceport::createDBConnection() {

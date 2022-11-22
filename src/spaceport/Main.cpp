@@ -1,6 +1,9 @@
 #include<iostream>
 
 #include "core/Spaceport.hpp"
+#include "data/Config.hpp"
+
+const std::filesystem::path spaceport::Config::configPath = "/etc/spaceport/spaceport.json";
 
 int main() {
     try {

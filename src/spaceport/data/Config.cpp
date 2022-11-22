@@ -7,12 +7,12 @@
 namespace spaceport {
 
 Config::Config() {
-    if (!std::filesystem::exists("/etc/spaceport/spaceport.json")) {
+    if (!std::filesystem::exists(configPath)) {
         spdlog::error("/etc/spaceport/spaceport.json doesn't exist; install broken.");
         throw 255;
     }
 
-    std::ifstream stream("/etc/spaceport/spaceport.json");
+    std::ifstream stream(configPath);
 
     stream >> data;
 }
