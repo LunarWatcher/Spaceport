@@ -12,7 +12,7 @@ jobs:
       - uses: actions/setup-python@v2
       - name: Dependencies
         run: |
-          sudo apt install postgresql postgresql-client
+          sudo apt install postgresql-14 postgresql-client-14
       - name: Set up postgresql
         run: |
           # Note for manual test runners; DO NOT run the next line. 
