@@ -31,6 +31,7 @@ PortMock::PortMock(const nlohmann::json& changes) {
 
     port->run(true);
     portFuture = port->getApp().run_async();
+    std::this_thread::sleep_for(std::chrono::seconds(3));
 }
 
 PortMock::~PortMock() {
@@ -43,7 +44,6 @@ void PortMock::stop() {
     std::this_thread::sleep_for(std::chrono::seconds(3));
     port->getApp().stop();
     portFuture.wait();
-    std::this_thread::sleep_for(std::chrono::seconds(3));
 }
 
 }
