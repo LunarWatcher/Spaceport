@@ -10,6 +10,8 @@ jobs:
     steps:
       - uses: actions/checkout@main
       - uses: actions/setup-python@main
+        # Why is this forced?
+        python-version: '3.10'
       - uses: LunarWatcher/install-conan@master
       - name: Dependencies
         run: |
