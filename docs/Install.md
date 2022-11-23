@@ -1,5 +1,11 @@
 # Installing
 
+## System requirements
+
+Only Linux is actively supported at this time.
+
+Exact hardware specs is unknown; the overall footprint is minimal, so even a Raspberry Pi should be able to run it.
+
 ## Compiling and installing
 
 TODO

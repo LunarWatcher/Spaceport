@@ -104,19 +104,14 @@ void Spaceport::init() {
 }
 
 std::shared_ptr<pqxx::connection> Spaceport::createDBConnection() {
+    auto username = conf.data.at("database").at("username").get<std::string>();
+    auto password = conf.data.at("database").at("password").get<std::string>();
+    spdlog::info("Attempting to connect to localhost as {}", username);
     return std::make_shared<pqxx::connection>(
-        "user=" + conf.data.at("database").at("username").get<std::string>() + " "
-        + "password=" + conf.data.at("database").at("password").get<std::string>() + " "
-        // TODO: for unit tests, this needs to be changed to something more flexible.
-        // Exposing it in general is a solid meh from me, because why tf would this be flexible?
-        // Usernames and passwords, obviously. Hosts, maybe (but generally useless, sooo),
-        // but the database name doesn't make sense as anything else.
-        // ... well, sort of.
-        //
-        // Aside tests, there's also debug deployments that probably shouldn't affect the proper database.
-        // I don't think the current config should conflict though. But I don't see much of a reason to 
-        // do this in practice, because why would I? It's pointless.
-        + "dbname=spaceport host=127.0.0.1"
+        "user=" + username + " "
+        + (password == "" ? "" : "password='" + password + "' ")
+        + (username == "spaceport-test" ? "dbname=spaceport-test " : "dbname=spaceport ")
+        + "host=localhost"
     );
 }
 

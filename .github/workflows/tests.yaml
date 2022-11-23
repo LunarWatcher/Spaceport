@@ -1,0 +1,30 @@
+name: Test workflow
+on:
+  push:
+    branches: [ master ]
+  pull_request:
+    branches: [ master ]
+jobs:
+  tests:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+      - uses: actions/setup-python@v2
+      - name: Dependencies
+        run: |
+          sudo apt install postgresql postgresql-client
+      - name: Set up postgresql
+        run: |
+          # Note for manual test runners; DO NOT run the next line. 
+          # Add "host spaceport-test spaceport-test 127.0.0.1/32 trust" instead.
+          echo "host all all 127.0.0.1/32 trust" > sudo tee /etc/postgresql/14/main/pg_hba.conf
+          sudo systemctl restart postgresql
+
+          createuser --createdb spaceport-test
+          createdb -U spaceport-test spaceport-test
+      - name: Run tests
+        run: |
+          mkdir build && cd build
+          cmake ..
+          make -j 4
+          ./bin/tests

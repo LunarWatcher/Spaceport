@@ -1,5 +1,7 @@
 add_executable(tests src/TestRunner.cpp
     src/ServerTests.cpp
+
+    src/util/PortMock.cpp
 )
 
 # Catch2 {{{
