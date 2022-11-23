@@ -8,8 +8,8 @@ jobs:
   tests:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v2
-      - uses: actions/setup-python@v2
+      - uses: actions/checkout@main
+      - uses: actions/setup-python@main
       - uses: LunarWatcher/install-conan@master
       - name: Dependencies
         run: |
