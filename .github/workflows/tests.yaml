@@ -20,7 +20,8 @@ jobs:
           # Add "host spaceport-test spaceport-test 127.0.0.1/32 trust" instead.
           PG_PATH=/etc/postgresql/14/main/pg_hba.conf
           echo "local all postgres trust" | sudo tee $PG_PATH
-          echo "host all all 127.0.0.1/32 trust" | sudo tee --append $PG_PATH
+          echo "host all all 0.0.0.0/0 trust" | sudo tee --append $PG_PATH
+          echo "host all all ::0/0 trust" | sudo tee --append $PG_PATH
           # Required for commands because postgres is fucking dumb (I could just append -h but fuck that shit)
           echo "local all all trust" | sudo tee --append $PG_PATH
           echo "Begin dump of $PG_PATH: -------------------------------------------------"
