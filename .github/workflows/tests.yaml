@@ -10,6 +10,7 @@ jobs:
     steps:
       - uses: actions/checkout@v2
       - uses: actions/setup-python@v2
+      - uses: LunarWatcher/install-conan@master
       - name: Dependencies
         run: |
           sudo apt install postgresql-14 postgresql-client-14
