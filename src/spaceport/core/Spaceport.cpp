@@ -83,13 +83,16 @@ void Spaceport::run(bool test) {
     app
         .multithreaded()
         .port(
+            conf.data.contains("unittestport") ? conf.data.at("unittestport").get<int>() :
+            (
 #ifdef SPACEPORT_DEBUG
-            conf.data.value("devport", 1337)
+                conf.data.value("devport", 1337)
 #else
-            conf.data.contains("ssl") && conf.data.at("ssl").value("enabled", false)
-                ? conf.data.value("sslport", 443)
-                : conf.data.value("port", 22)
+                conf.data.contains("ssl") && conf.data.at("ssl").value("enabled", false)
+                    ? conf.data.value("sslport", 443)
+                    : conf.data.value("port", 22)
 #endif
+            )
         );
 
     if (!test) {

@@ -10,6 +10,7 @@ PortMock::PortMock() : PortMock(nlohmann::json{}) {
 
 PortMock::PortMock(const nlohmann::json& changes) {
     const nlohmann::json defaults = {
+        {"unittestport", 1337},
         {"ssl", {
             {"enabled", false},
         }},

@@ -31,6 +31,6 @@ jobs:
       - name: Run tests
         run: |
           mkdir build && cd build
-          cmake ..
+          cmake .. -DCMAKE_BUILD_TYPE=Release
           make -j 4
           ./bin/tests
