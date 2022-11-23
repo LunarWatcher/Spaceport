@@ -20,8 +20,8 @@ jobs:
           echo "host all all 127.0.0.1/32 trust" > sudo tee /etc/postgresql/14/main/pg_hba.conf
           sudo systemctl restart postgresql
 
-          createuser --createdb spaceport-test
-          createdb -U spaceport-test spaceport-test
+          sudo -u postgres createuser --createdb spaceport-test
+          sudo -u postgres createdb -U spaceport-test spaceport-test
       - name: Run tests
         run: |
           mkdir build && cd build
