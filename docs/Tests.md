@@ -1,6 +1,6 @@
 # Running tests
 
-**Note:** I do not recommend manually running tests. They require access to a database, and will eat anything that conflicts with test dependencies or tables. It needs a user called `spaceport-test` that can log in without a password, into a database by the same name.
+**Note:** I do not recommend manually running tests. They require access to a database, and will eat anything that conflicts with test dependencies or tables. It needs a user called `spaceport-test` that can log in without a password, into a database by the same name. This has security implications if the database config is set up incorrectly. Due to the nature of Spaceport, it's exposed outside the device. This can open an attack vector in improperly configured databases.
 
 Postgresql is extremely unfriendly from a consumer test POV, by not offering an (easily discoverable) way to automate testing.
 
