@@ -24,8 +24,8 @@ void Dashboard::initEndpoints(Spaceport& port) {
 
 void Dashboard::initContext(crow::mustache::context& ctx, const std::string& title,
                  const std::string& contentPartial, const std::string& pageJS) {
+    ctx["HasPageJS"] = pageJS != "";
     if (pageJS != "") {
-        ctx["HasPageJS"] = true;
         ctx["PageJSLoc"] = pageJS;
     }
     ctx["Version"] = SPACEPORT_VERSION;

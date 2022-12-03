@@ -103,10 +103,78 @@ header {
     height: 64px;
 }
 
-.nav-container > div {
+.nav-main > div {
     display: block;
 }
 
+main {
+    display: grid;
+    grid-template-columns: 1fr 5fr;
+    gap: 10px;
+}
+/*}}}*/
+/*Navbar {{{*/
+.collapsible-sidenav {
+    width: 30vw;
+    max-width: 300px;
+    background-color: var(--grey-special);
+    z-index: 100;
+    transition: all 1s ease;
+}
+
+.sidenav-content {
+    padding: 1rem;
+}
+
+#menu-btn, #sidenav-close {
+    display: none;
+}
+
+@media only screen and (max-width: 450px) {
+    main {
+        grid-template-columns: 1fr;
+        width: 90%;
+        margin: 0 auto;
+    }
+    .collapsible-sidenav {
+        /*display: none;*/
+        position: absolute;
+        overflow: hidden;
+        top: 0;
+        left: 0;
+        width: 0;
+        height: 100vh;
+        margin: 0;
+        padding: 0px;
+    }
+    .sidenav-content {
+        display: block;
+    }
+
+
+    .collapsible-sidenav.open {
+        width: 100vw;
+        display: inline-block;
+    }
+
+    #sidenav-close {
+        display: inline;
+        position: absolute;
+        font-size: 27px;
+        font-weight: 900;
+
+        top: 1rem;
+        right: 1rem;
+    }
+    #sidenav-close a {
+        cursor: pointer;
+        text-decoration: none;
+    }
+
+    #menu-btn {
+        display: inline-block;
+    }
+}
 /*}}}*/
 /*Element styling {{{*/
 a {

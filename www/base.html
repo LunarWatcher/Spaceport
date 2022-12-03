@@ -6,7 +6,7 @@
         <meta http-equiv="Content-language" content = "en-GB"/>
 
         <title>{{ PageTitle }} | Spaceport</title>
-        <script src="/assets/base.js"></script>
+        <script async src="/assets/base.js"></script>
 
         {{#HasPageJS}}
         <script src="{{PageJSLoc}}" async></script>
@@ -16,17 +16,36 @@
     </head>
     <body>
         <header>
-            <nav class="nav-container container double-column-grid">
-                <div>
-                    <h1 class="logo left"><a href="/">Spaceport</a></h1>
-                </div>
-                <div>
-                    <a id="menu-btn" class="nav-button">Menu</a>
+            <nav class="nav-container container">
+                <div class="nav-main double-column-grid">
+                    <div>
+                        <h1 class="logo left"><a href="/">Spaceport</a></h1>
+                    </div>
+                    <div>
+                        <a id="menu-btn" class="nav-button">Menu</a>
+                    </div>
                 </div>
             </nav>
         </header>
         <main>
-            <div class="container">
+            <div class="collapsible-sidenav" id="sidenav">
+                <div class="sidenav-content">
+                    <span id="sidenav-close"><a>×</a></span>
+                    <div>
+                        <h3>TBA</h3>
+                    </div>
+                    <div>
+                        <h3>TBA</h3>
+                    </div>
+                    <div>
+                        <h3>Admin</h3>
+                        <ul class="sneaky-list">
+                            <li><a href="/su/api-keys">Manage API keys</a></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            <div>
                 {{&Content}}
             </div>
         </main>
